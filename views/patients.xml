@@ -1,0 +1,11 @@
+<odoo>
+    <record id="patient_action" model="ir.actions.act_window">
+       <field name="name"> patient Action</field>
+<!--        iti_student.py get here name -->
+          <field name="res_model">hms.patient</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<menuitem id="patient_action_menu" name="Manage Patients"  parent="hms_patients_menu" action="patient_action" />
+
+
+</odoo>

@@ -1,0 +1,48 @@
+<odoo>
+        <record id="view_patient_form" model="ir.ui.view">
+        <field name="name">hms.patient.form</field>
+        <field name="model">hms.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+        <button name="approve_action" type="object" string="Approve"/>
+                      <button name="create_level_log" type="object" string="Create Log"/>
+                     <field name="level" widget="statusbar" options="{'clickable': '1'}"/>
+
+                 </header>
+                <sheet>
+                   <notebook>
+                        <page string="page1">
+                        <group>
+                        <field name="firstname"/>
+                        <field name="lastname"/>
+                        <field name="birth_date"/>
+                        <field name="history"/>
+                        <field name="cr_Ratio"/>
+                        <field name="blood"/>
+                        <field name="state"/>
+                        <field name="pcr"/>
+                        <field name="image"/>
+                        <field name="address"/>
+                        <field name="age"/>
+                <field name="email"/>
+
+                    </group>
+                    </page>
+                       <page string="Logs">
+                         <field name="log_ids">
+                            <tree>
+                                <field name="created_by"/>
+                                <field name="date"/>
+                                <field name="description"/>
+                           </tree>
+                         </field>
+                         </page>
+
+                   </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
