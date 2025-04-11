@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="hms_patient_tree" model="ir.ui.view">
+            <field name="name">Patient Tree View</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="age"/>
+                    <field name="blood_type"/>
+                    <field name="image"/>
+                </tree>
+            </field>
+
+        </record>
+        <record id="hms_patient_action" model="ir.actions.act_window">
+            <field name="name">Patient</field>
+            <field name="res_model">hms.patient</field>
+        </record>
+
+
+        <menuitem id="hms-root-menu" name="Hospital"/>
+        <menuitem id="hms-patient" name="Patient" parent="hms-root-menu" action="hms_patient_action"/>
+    </data>
+</odoo>
