@@ -1,0 +1,24 @@
+
+<odoo>
+    <record id="inherit_hms_view_partner_form" model="ir.ui.view">
+        <field name="name">res partner form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[2]/div[field[@name='email']]" position="after">
+                <field name="related_patient_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_partner_tree_view_inherit" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="website"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

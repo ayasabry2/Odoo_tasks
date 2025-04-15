@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+hospital_user_access,hospital.user.access,model_hospital_patients,hmshospital.group_hospital_normal_user,1,1,1,0
+hospital_user_log_access,hospital.user.log.access,model_hospital_patient_log,hmshospital.group_hospital_normal_user,1,1,1,0
+hospital_user_departments_access,hospital.user.departments.access,model_hospital_departments,hmshospital.group_hospital_normal_user,1,0,0,0
+hospital_user_doctors_access,hospital.user.doctors.access,model_hospital_doctors,hmshospital.group_hospital_normal_user,1,0,0,0
+
+hospital_manager_access,hospital.manager.access,model_hospital_patients,hmshospital.hospital_manager_group,1,1,1,1
+hospital_manager_log_access,hospital.manager.log.access,model_hospital_patient_log,hmshospital.hospital_manager_group,1,1,1,1
+hospital_manager_departments_access,hospital.manager.departments.access,model_hospital_departments,hmshospital.hospital_manager_group,1,1,1,1
+hospital_manager_doctors_access,hospital.manager.doctors.access,model_hospital_doctors,hmshospital.hospital_manager_group,1,1,1,1
+
+

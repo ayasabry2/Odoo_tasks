@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_hospital_patient_status_alt" model="ir.actions.report">
+            <field name="name">Patient Status Summary</field>
+            <field name="model">hospital.patients</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hmshospital.patient_status_report_alt</field>
+            <field name="print_report_name">'Patient Summary - %s' % (object.first_name + ' ' + object.last_name)</field>
+        </record>
+
+        <template id="patient_status_report_alt">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="patient">
+                        <div class="page">
+
+                            <h2 class="text-center mb-4">🩺 Patient Status Summary</h2>
+                            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin-bottom: 30px;">
+                                <h4>👤 Personal Information</h4>
+                                <ul>
+                                    <li><strong>Full Name:</strong> <t t-esc="patient.first_name"/> <t t-esc="patient.last_name"/></li>
+                                    <li><strong>Email:</strong> <t t-esc="patient.email or 'N/A'"/></li>
+                                    <li><strong>Birth Date:</strong> <t t-esc="patient.birth_date or 'N/A'"/></li>
+                                    <li><strong>Age:</strong> <t t-esc="patient.age or 'N/A'"/></li>
+                                    <li><strong>Address:</strong> <t t-esc="patient.address or 'N/A'"/></li>
+                                    <li><strong>State:</strong> <t t-esc="patient.state or 'N/A'"/></li>
+                                </ul>
+                            </div>
+
+                            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; margin-bottom: 30px;">
+                                <h4>🏥 Medical Details</h4>
+                                <ul>
+                                    <li><strong>Department:</strong> <t t-esc="patient.department_id.name or 'N/A'"/></li>
+                                    <li><strong>Blood Type:</strong> <t t-esc="patient.blood_type or 'N/A'"/></li>
+                                    <li><strong>CR Ratio:</strong> <t t-esc="patient.cr_ratio or 'N/A'"/></li>
+                                    <li><strong>PCR:</strong> <t t-esc="'Yes' if patient.pcr else 'No'"/></li>
+                                    <li><strong>History:</strong> <t t-esc="patient.history or 'N/A'"/></li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 30px;">
+                                <h4>📝 History Log</h4>
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Patient</th>
+                                            <th>Created By</th>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="patient.history_log" t-as="log">
+                                            <tr>
+                                                <td><t t-esc="log.patients_id.name"/></td>
+                                                <td><t t-esc="log.created_by.name"/></td>
+                                                <td><t t-esc="log.date"/></td>
+                                                <td><t t-esc="log.description or 'N/A'"/></td>
+                                            </tr>
+                                        </t>
+                                        <t t-if="not patient.history_log">
+                                            <tr>
+                                                <td colspan="4" class="text-center">No history logs available.</td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="text-center mt-5">
+                                <p><em>Report Generated on: <t t-esc="datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')"/></em></p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

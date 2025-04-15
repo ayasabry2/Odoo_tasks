@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+        <record id="hospital_patient_tree" model="ir.ui.view">
+            <field name="name">Patients Tree View</field>
+            <field name="model">hospital.patients</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="age"/>
+                    <field name="blood_type"/>
+                </tree>
+            </field>
+
+        </record><record id="hospital_patient_form" model="ir.ui.view">
+            <field name="name">Patients Form</field>
+            <field name="model">hospital.patients</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                         <button name="report_hospital_patient_status" string="Print Status Report" type="object" class="btn-primary"/>                    </header>
+                    <sheet>
+                        <group>
+                          <group string="Patient Info">
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="email"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="address"/>
+                            <field name="state"/>
+                          </group>
+                          <group string="Patient Details">
+                            <field name="department_id" widget="many2one_list"/>
+                            <field name="capacity_id"/>
+                            <field name="doctors_id" widget="many2many_tags" readonly="not department_id" groups="hmshospital.hospital_manager_group"/>
+                            <field name="cr_ratio" required="pcr" />
+                            <field name="pcr" />
+                            <field name="history" invisible="age &lt; 50"/>
+                            <field name="blood_type"/>
+<!--                            <field name="image"/>-->
+                            <div class="oe_title">
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </div>
+                          </group>
+                    </group>
+                    <notebook>
+                        <page string="History Log">
+                            <field name="history_log">
+                                <tree>
+                                    <field name="patients_id"/>
+                                    <field name="created_by"/>
+                                    <field name="date"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+
+        </record>
+
+    </data>
+</odoo>
